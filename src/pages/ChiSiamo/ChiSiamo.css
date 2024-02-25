@@ -1,0 +1,27 @@
+.sezione-chi-siamo {
+  margin-bottom: 96px;
+  background-color: var(--colore-secondario-accento);
+  border-radius: 128px;
+  box-shadow: 0 0 16px 16px var(--colore-secondario-accento);
+  color: var(--colore-secondario-testo);
+  padding: 16px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 24px;
+}
+
+.team-member img {
+  width: 192px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

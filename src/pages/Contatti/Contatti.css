@@ -1,0 +1,26 @@
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: var(--colore-sfondo-accento);
+  color: var(--colore-sfondo-testo);
+}
+
+form button[type="submit"] {
+  background-color: var(--colore-secondario);
+  color: var(--colore-secondario-testo);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+  background-color: var(--colore-secondario-accento);
+}
+
+.modulo-contatto {
+  max-width: 512px;
+  margin: 64px auto;
+}
