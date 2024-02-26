@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v3.0.0-rc1
+    container_name: traefik
+    command:
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.vetrinaresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.vetrinaresolver.acme.email=tuaemail@example.com"
+      - "--certificatesresolvers.vetrinaresolver.acme.storage=/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - web
+
+  vetrina:
+    build: .
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vetrina.rule=Host(`localhost`)"
+      - "traefik.http.routers.vetrina.entrypoints=websecure"
+      - "traefik.http.routers.vetrina.tls.certresolver=vetrinaresolver"
+    networks:
+      - web
+    environment:
+      - SMTP_HOST=smtp.example.com
+      - SMTP_USER=user@example.com
+      - SMTP_PASSWORD=password
+      - SMTP_PORT=587
+    volumes:
+      - .:/vetrina
+
+networks:
+  web:
